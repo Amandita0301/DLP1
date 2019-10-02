@@ -23,7 +23,11 @@ L1:
 			conta:= 0;    --garante que vai comecar em zero
 		-- rising edge == a usar event, o recomendado e o rising
 		elsif (rising_edge(clk))then --coloco isso nao precisa do else, nao faz latch
-			conta:= conta + 1;
+			if conta = 7 then
+				conta:= 0; --reset assincrono(dentro do rising clock)
+			else	
+				conta:= conta + 1;
+			end if;
 		end if;
 	conta_s <= std_logic_vector(to_unsigned(conta,3)); 
 	end process;
